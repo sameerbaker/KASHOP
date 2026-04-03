@@ -4,6 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>a5562ad3-4a1c-4f33-8c67-c89676e078bd</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +18,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KASHOP.BLL\KASHOP.BLL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\nikeshose.jfif" />
   </ItemGroup>
 
 </Project>

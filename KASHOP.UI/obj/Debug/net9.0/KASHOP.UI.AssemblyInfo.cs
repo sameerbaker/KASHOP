@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("a5562ad3-4a1c-4f33-8c67-c89676e078bd")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("KASHOP.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+192b2429a9c90c35b3d37a10ed77f1afde6ceaa2")]
 [assembly: System.Reflection.AssemblyProductAttribute("KASHOP.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KASHOP.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

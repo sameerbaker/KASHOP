@@ -70,7 +70,6 @@ D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\obj\Debug\net9.0\KASHOP.UI.Ge
 D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\obj\Debug\net9.0\KASHOP.UI.AssemblyInfoInputs.cache
 D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\obj\Debug\net9.0\KASHOP.UI.AssemblyInfo.cs
 D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\obj\Debug\net9.0\KASHOP.UI.csproj.CoreCompileInputs.cache
-D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\obj\Debug\net9.0\KASHOP.UI.MvcApplicationPartsAssemblyInfo.cs
 D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\obj\Debug\net9.0\KASHOP.UI.MvcApplicationPartsAssemblyInfo.cache
 D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\obj\Debug\net9.0\ar\KASHOP.UI.resources.dll
 D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\obj\Debug\net9.0\rjimswa.dswa.cache.json
@@ -172,3 +171,12 @@ D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\zh-Hans\Micr
 D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\Mapster.dll
 D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\Mapster.Core.dll
+D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\obj\Debug\net9.0\KASHOP.UI.sourcelink.json
+D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
+D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll
+D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\obj\Debug\net9.0\KASHOP.UI.MvcApplicationPartsAssemblyInfo.cs
+D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\KASHOP.UI.staticwebassets.runtime.json

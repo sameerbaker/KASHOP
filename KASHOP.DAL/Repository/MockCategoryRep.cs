@@ -15,6 +15,11 @@ namespace KASHOP.DAL.Repository
             throw new NotImplementedException();
         }
 
+        public Task<bool> DeleteAsync(Category entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<Category>> GetAllAsync()
         {
             throw new NotImplementedException();
@@ -26,6 +31,11 @@ namespace KASHOP.DAL.Repository
         }
 
         public Task<Category> GetOne(Expression<Func<Category, bool>> filter, string[]? includes = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateAsync(Category entity)
         {
             throw new NotImplementedException();
         }

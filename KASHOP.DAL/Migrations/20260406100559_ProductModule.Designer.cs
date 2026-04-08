@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KASHOP.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260331102524_ProductModule")]
+    [Migration("20260406100559_ProductModule")]
     partial class ProductModule
     {
         /// <inheritdoc />

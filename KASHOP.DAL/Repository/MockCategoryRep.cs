@@ -25,7 +25,7 @@ namespace KASHOP.DAL.Repository
             throw new NotImplementedException();
         }
 
-        public Task<List<Category>> GetAllAsync(string[]? includes = null)
+        public Task<List<Category>> GetAllAsync(Expression<Func<Category, bool>> filter = null, string[]? includes = null)
         {
             throw new NotImplementedException();
         }

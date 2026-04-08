@@ -1,4 +1,5 @@
-﻿using KASHOP.DAL.DTO.Response;
+﻿using KASHOP.DAL.DTO.Request;
+using KASHOP.DAL.DTO.Response;
 using KASHOP.DAL.Models;
 using Mapster;
 using System;
@@ -30,6 +31,9 @@ namespace KASHOP.BLL.Mapping
                     .Select(t => t.Name).FirstOrDefault()
                     )
                 .Map(dest=>dest.MainImage, source => $"https://localhost:7270/images/{source.MainImage}");
+
+            TypeAdapterConfig< Product, ProductUpdateRequest>.NewConfig()
+                .IgnoreNullValues(true);
         }
     }
 }

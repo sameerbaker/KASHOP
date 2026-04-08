@@ -39,6 +39,8 @@ namespace KASHOP.BLL.Service
         public async Task<List<ProductResponse>> GetAllProductAsync()
         {
             var products = await _productRepository.GetAllAsync(
+                p=>p.Status == EntityStatus.Active
+                ,
                 new string[] {
                     nameof(Product.Translations),
                     nameof(Product.CreatedBy)
@@ -73,19 +75,66 @@ namespace KASHOP.BLL.Service
 
         public async Task<bool> UpdateProduct(int id, ProductUpdateRequest request)
         {
-            var productDb = await _productRepository.GetOne(c => c.Id == id);
-            if(productDb == null) return false;
+            var product = await _productRepository.GetOne(p => p.Id == id,
+            new string[] {
+                    nameof(Product.Translations),
+                    nameof(Product.CreatedBy)
+                }
+            );
+            if(product == null) return false;
 
-            var product = request.Adapt<Product>();
+            var oldImage = product.MainImage;
 
-            if(request.MainImage != null)
+            request.Adapt(product);
+
+            if(request.Translations != null) 
             {
-                _fileService.Delete(productDb.MainImage);
+                foreach(var translationRequest in request.Translations)
+                {
+                    var existing = product.Translations.FirstOrDefault(t => t.Language == translationRequest.Language);
+                    if (existing != null)
+                    {
+                        if (translationRequest.Name != null)
+                        {
+                            existing.Name = translationRequest.Name;
+                        }
+                        if (translationRequest.Description != null)
+                        {
+                            existing.Description = translationRequest.Description;
+                        }
+                    }
+                    else 
+                    {
+                        return false;
+                    }
+
+                }
+            }
+
+            if (request.MainImage != null)
+            {
+                _fileService.Delete(oldImage);
                 product.MainImage = await _fileService.UploadAsync(request.MainImage);
+            }else
+            { 
+                product.MainImage = oldImage;
             }
             
             return await _productRepository.UpdateAsync(product);
+            
 
         }
+
+        public async Task<bool> ToggleStatus(int id) 
+        {
+            var product = await _productRepository.GetOne(p => p.Id == id);
+            if (product is null) return false;
+            product.Status = product.Status == EntityStatus.Active ? EntityStatus.Inactive : EntityStatus.Active;
+            return await _productRepository.UpdateAsync(product);
+        }
+
+
     }
 }
+
+

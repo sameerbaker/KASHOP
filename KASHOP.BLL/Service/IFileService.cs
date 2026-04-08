@@ -11,5 +11,6 @@ namespace KASHOP.BLL.Service
     {
         Task<string?> UploadAsync(IFormFile file);
         void Delete(string fileName);
+        
     }
 }

@@ -138,13 +138,15 @@ namespace KASHOP.UI
             {
                 app.MapOpenApi();
             }
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseAuthentication();
-            app.UseAuthorization();
             app.UseCors(MyAllowSpecificOrigins);
 
+            app.UseHttpsRedirection();
+
+
+            
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseStaticFiles();
             app.MapControllers();
 
             using (var scope = app.Services.CreateScope())

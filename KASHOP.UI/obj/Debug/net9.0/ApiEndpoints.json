@@ -272,6 +272,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "KASHOP.UI.Controllers.ProductsController",
+    "Method": "ChanngeStatus",
+    "RelativePath": "api/Products/{id}/status",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "KASHOP.UI.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

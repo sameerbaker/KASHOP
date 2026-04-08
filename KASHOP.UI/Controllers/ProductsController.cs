@@ -59,6 +59,16 @@ namespace KASHOP.UI.Controllers
             return Ok();
         }
 
+        [HttpPatch("{id}/status")]
+        [Authorize]
+        public async Task<IActionResult> ChanngeStatus(int id)
+        {
+            var updated = await _productService.ToggleStatus(id);
+            if (!updated) return BadRequest();
+
+            return Ok();
+        }
+
 
         [HttpDelete("{id}")]
         [Authorize]

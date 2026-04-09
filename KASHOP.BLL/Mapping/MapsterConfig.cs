@@ -34,6 +34,10 @@ namespace KASHOP.BLL.Mapping
 
             TypeAdapterConfig< Product, ProductUpdateRequest>.NewConfig()
                 .IgnoreNullValues(true);
+
+            TypeAdapterConfig<Brand, BrandResponse>.NewConfig()
+                .Map(dest => dest.BrandId, source => source.Id)
+                .Map(dest => dest.UserCreated, source => source.CreatedBy.UserName);
         }
     }
 }

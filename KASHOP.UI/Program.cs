@@ -80,6 +80,8 @@ namespace KASHOP.UI
             builder.Services.AddScoped<IFileService, FileService>();
             builder.Services.AddScoped<ISeedData, RoleSeedData>();
             builder.Services.AddTransient<IEmailSender, EmailSender>();
+            builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+            builder.Services.AddScoped<IBrandService, BrandService>();
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(Options =>
             {

@@ -20,6 +20,7 @@ namespace KASHOP.DAL.Data
         public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
+        public DbSet<Brand> Brands { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
           IHttpContextAccessor HttpContextAccessor)
             : base(options)
@@ -58,6 +59,20 @@ namespace KASHOP.DAL.Data
                            .WithMany()
                            .HasForeignKey(p => p.UpdatedById)
                            .OnDelete(DeleteBehavior.Restrict);
+
+                    builder.Entity<Brand>()
+                            .HasOne(p => p.CreatedBy).WithMany()
+                            .HasForeignKey(p => p.CreatedById)
+                            .OnDelete(DeleteBehavior.Restrict);
+
+                    builder.Entity<Brand>()
+                            .HasOne(p => p.UpdatedBy).WithMany()
+                            .HasForeignKey(p => p.UpdatedById)
+                            .OnDelete(DeleteBehavior.Restrict);
+                    builder.Entity<Product>()
+                            .HasOne(p => p.Brand).WithMany()
+                            .HasForeignKey(p => p.BrandId)
+                            .OnDelete(DeleteBehavior.Restrict);
 
         }
 

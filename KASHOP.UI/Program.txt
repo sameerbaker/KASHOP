@@ -25,22 +25,74 @@ namespace KASHOP.UI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            //builder.Services.AddControllers();--------------
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+            //builder.Services.AddOpenApi();------------------------
             //Database connection
+
+
+
+            //builder.Services.AddDatabaseServices(builder.Configuration); -----------
+
+
             builder.Services.AddBuilderServices(builder.Configuration);
+
+
+
+
             //for the forntend and backend to work together we need to add CORS policy
             //https: //documenter.getpostman .com/view/52583466/2sBXiknqxh
+
+
             //add cors policy
+            //builder.Services.AddCorsPolicyServices();---------------
+
+
             //Add localization services
+            //builder.Services.AddlocalizationServices();------------
+
+
+
+
+
             // Add application services
+            //builder.Services.AddApplicationServices();---------------------------
+
+
+
+
+
+
+
+
+
+
+
+
             // Add Identity services
+            //builder.Services.AddIdentityServices();-----------------------------
+
+
             builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                       .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
                       .AddEnvironmentVariables();
+
+
+
+
             // Add authentication services
+            //builder.Services.AddJWTAuthenticationServices(builder.Configuration);----------------
+
+            //builder.Services.AddAuthentication();-------------
+
             MapsterConfig.MapsterConfigRegister();
+
             var app = builder.Build();
+
             app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
+
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -48,11 +100,16 @@ namespace KASHOP.UI
                 app.MapOpenApi();
             }
             app.UseCors(AddCorsPolicy.PolicyName);
+
             app.UseHttpsRedirection();
+
+
+
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseStaticFiles();
             app.MapControllers();
+
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;

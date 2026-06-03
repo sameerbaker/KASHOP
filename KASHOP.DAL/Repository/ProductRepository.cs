@@ -13,5 +13,14 @@ namespace KASHOP.DAL.Repository
         public ProductRepository(ApplicationDbContext context) : base(context)
         {
         }
+
+        public async Task<bool> DecreaseQuantityAsync(int productId, int amount)
+        {
+            var product = await GetOne(p => p.Id == productId);
+            if (product.Quantity < amount) return false;
+            product.Quantity -= amount;
+            await UpdateAsync(product);
+            return product.Quantity < 5; // Return true if quantity is low
+        }
     }
 }

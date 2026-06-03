@@ -1,4 +1,5 @@
 ﻿using KASHOP.DAL.DTO.Request;
+using KASHOP.DAL.DTO.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,10 @@ namespace KASHOP.BLL.Service
 {
     public interface ICartService
     {
-        Task AddToCart(AddToCartRequest request, string UserId);
+        Task<bool> AddToCart(AddToCartRequest request, string UserId);
+        Task<List<CartResponse>> GetCart(string UserId);
+        Task<bool> UpdateQuantity(int productId, int count, string userId);
+        Task<bool> RemoveItem(int productId, string userId);
+        Task<bool> ClearCart(string userId);
     }
 }

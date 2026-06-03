@@ -38,6 +38,13 @@ namespace KASHOP.BLL.Mapping
             TypeAdapterConfig<Brand, BrandResponse>.NewConfig()
                 .Map(dest => dest.BrandId, source => source.Id)
                 .Map(dest => dest.UserCreated, source => source.CreatedBy.UserName);
+
+            TypeAdapterConfig<Cart, CartResponse>.NewConfig()
+                .Map(dest => dest.ProductName, source => source.Product.Translations
+                .Where(t => t.Language == CultureInfo.CurrentCulture.Name)
+                .Select(t => t.Name).FirstOrDefault()
+                ).Map(dest => dest.Price, source => source.Product.Price)
+                .Map(dest => dest.ProductImage, source => $"https://localhost:7270/images/{source.Product.MainImage}"); ;
         }
     }
 }

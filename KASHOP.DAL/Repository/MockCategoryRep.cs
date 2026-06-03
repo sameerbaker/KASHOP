@@ -20,6 +20,11 @@ namespace KASHOP.DAL.Repository
             throw new NotImplementedException();
         }
 
+        public Task<bool> DeletRangeAsync(List<Category> entities)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<Category>> GetAllAsync()
         {
             throw new NotImplementedException();

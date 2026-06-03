@@ -17,7 +17,7 @@ namespace KASHOP.UI.Extensinos
             //Add localization services
             Services.AddlocalizationServices();
             // Add application services
-            Services.AddApplicationServices();
+            Services.AddApplicationServices(Configuration);
             // Add Identity services
             Services.AddIdentityServices();
             // Add authentication services

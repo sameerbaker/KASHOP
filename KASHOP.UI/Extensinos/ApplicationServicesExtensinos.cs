@@ -26,6 +26,8 @@ namespace KASHOP.UI.Extensinos
             Services.AddScoped<IBrandService, BrandService>();
             Services.AddScoped<ICartRepository, CartRepository>();
             Services.AddScoped<ICartService, CartService>();
+            Services.AddScoped<IOrderService, OrderService>();
+            Services.AddScoped<IUserManaagementService, UserManaagementService>();
             Services.AddScoped<IOrderRepository, DAL.Repository.OrderRepository>();
             Services.AddScoped<ICheckoutService, BLL.Service.CheckoutService>();
             Services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));

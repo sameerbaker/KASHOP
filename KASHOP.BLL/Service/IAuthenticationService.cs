@@ -1,5 +1,6 @@
 ﻿using KASHOP.DAL.DTO.Request;
 using KASHOP.DAL.DTO.Response;
+using Microsoft.AspNetCore.Identity.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,7 @@ namespace KASHOP.BLL.Service
 
         Task<ForgotPasswordRespsonse> RequestPasswordResetAsync(ForgotPasswordRequests request);
         Task<ResetPasswordResponse> ResetPasswordAsync(ResetPasswordRequests request);
+        Task<LoginResponse> RefreshTokenAsync();
+        //Task<object?> LoginAsync(LoginRequest request);
     }
 }

@@ -22,14 +22,15 @@ namespace KASHOP.BLL.Service
         private readonly IOrderRepository _orderRepository;
         private readonly ICartService _cartService;
         private readonly IProductRepository _productRepository;
+        private readonly IEmailSender _emailSender;
 
 
         public CheckoutService(ICartRepository cartRepository, UserManager<ApplicationUser> userManager,
             IHttpContextAccessor httpContextAccessor,
                 IOrderRepository orderRepository,
                 ICartService cartService
-, IProductRepository productRepository
-            )
+                , IProductRepository productRepository
+                , IEmailSender emailSender)
         {
             _cartRepository = cartRepository;
             _userManager = userManager;
@@ -37,6 +38,7 @@ namespace KASHOP.BLL.Service
             _orderRepository = orderRepository;
             _cartService = cartService;
             _productRepository = productRepository;
+            _emailSender = emailSender;
         }
         public async Task<CheckoutResponse> ProcessCheckout(string userId, CheckoutRequest request)
         {
@@ -88,10 +90,39 @@ namespace KASHOP.BLL.Service
            
             if (request.PaymentMethod == PaymentMethodEnum.Cash)
             {
+                var order = new Order()
+                {
+                    UserId = userId,
+                    PaymentMethod = request.PaymentMethod,
+                    City = city,
+                    Street = street,
+                    PhoneNumber = phoneNumber,
+                    OrderStatus = OrderStatusEnum.Paid, 
+                    AmoundPaid = cartItems.Sum(c => c.Count * c.Product.Price),
+                    OrderItems = cartItems.Select(c => new OrderItem
+                    {
+                        ProductId = c.ProductId,
+                        Quantity = c.Count,
+                        UnitPrice = c.Product.Price,
+                        TotalPrice = c.Count * c.Product.Price
+                    }).ToList()
+                };
+
+                await _orderRepository.CreateAsync(order);
+
+                
+                foreach (var item in cartItems)
+                {
+                    await _productRepository.DecreaseQuantityAsync(new List<OrderItem> { new OrderItem { ProductId = item.ProductId, Quantity = item.Count } }); //here i think there is a error
+                }
+
+                
+                await _cartService.ClearCart(userId);
+
                 return new CheckoutResponse
                 {
                     Success = true,
-
+                    OrderId = order.Id
                 };
 
             }
@@ -101,8 +132,8 @@ namespace KASHOP.BLL.Service
                 {
                     PaymentMethodTypes = new List<string> { "card" },
                     Mode = "payment",
-                    SuccessUrl = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}/checkout/success?sessionId={{CHECKOUT_SESSION_ID}}",
-                    CancelUrl = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}/checkout/cancel",
+                    SuccessUrl = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}/api/checkout/success?sessionId={{CHECKOUT_SESSION_ID}}",
+                    CancelUrl = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}/api/checkout/cancel",
                     LineItems = new List<SessionLineItemOptions>()
                 };
 
@@ -178,13 +209,24 @@ namespace KASHOP.BLL.Service
             await _orderRepository.UpdateAsync(order);
 
             await _cartService.ClearCart(order.UserId);
-            foreach (var item in order.OrderItems) 
+
+            var user = await _userManager.FindByIdAsync(order.UserId);
+            await _emailSender.SendEmailAsync(user.Email, "Order Confirmation", $"Your order with ID {order.Id} has been successfully placed.");
+
+
+            var LowStockProducts = await _productRepository.DecreaseQuantityAsync(order.OrderItems);
+
+
+            foreach (var item in LowStockProducts) 
             {
-                var isLowQuantity = await _productRepository.DecreaseQuantityAsync(item.ProductId, item.Quantity);
-                if (isLowQuantity)
+                if(LowStockProducts != null)
                 {
-                    // Handle low quantity scenario, e.g., notify admin or user
+                    await _emailSender.SendEmailAsync($"rakan.sameer1@gmail.com",
+                    "Low stock alert",
+                    $"<h2>Product {item.Translations.FirstOrDefault(t=>t.Language=="en").Name} current quantity : {item.Quantity}</h2>");
                 }
+                
+                
             }
 
             return new CheckoutResponse

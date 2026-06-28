@@ -40,7 +40,17 @@ namespace KASHOP.DAL.Repository
             throw new NotImplementedException();
         }
 
+        public IQueryable<Category> GetQueryable(Expression<Func<Category, bool>> filter = null, string[]? includes = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> UpdateAsync(Category entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateRangeAsync(List<Category> entities)
         {
             throw new NotImplementedException();
         }

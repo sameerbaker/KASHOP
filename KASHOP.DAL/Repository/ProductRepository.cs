@@ -14,13 +14,23 @@ namespace KASHOP.DAL.Repository
         {
         }
 
-        public async Task<bool> DecreaseQuantityAsync(int productId, int amount)
+        public async Task<List<Product>?> DecreaseQuantityAsync(List<OrderItem> orderItems)
         {
-            var product = await GetOne(p => p.Id == productId);
-            if (product.Quantity < amount) return false;
-            product.Quantity -= amount;
-            await UpdateAsync(product);
-            return product.Quantity < 5; // Return true if quantity is low
+            var productIds = orderItems.Select(i => i.ProductId).ToList();
+            var products = await GetAllAsync(p => productIds.Contains(p.Id));
+
+            foreach(var product in products)
+            {
+                var item = orderItems.FirstOrDefault(P => P.ProductId == product.Id);
+                if (item != null)
+                {
+                    product.Quantity -= item.Quantity;
+                }
+            }
+
+
+            await UpdateRangeAsync(products);
+            return products.Where(p => p.Quantity < 5).ToList(); // Return true if any product quantity is low
         }
     }
 }

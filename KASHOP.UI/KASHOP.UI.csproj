@@ -24,8 +24,4 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\images\nikeshose.jfif" />
-  </ItemGroup>
-
 </Project>

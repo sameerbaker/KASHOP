@@ -3,6 +3,7 @@ using KASHOP.DAL.DTO.Request;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 using System.Security.Claims;
 
 namespace KASHOP.UI.Controllers
@@ -37,5 +38,7 @@ namespace KASHOP.UI.Controllers
             return Ok(new { Message = "Payment successful!", sessionId = sessionId });
 
         }
+
+       
     }
 }

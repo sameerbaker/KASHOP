@@ -9,6 +9,8 @@ namespace KASHOP.DAL.DTO.Request
     public class LoginRequests
     {
         public string Email { get; set; }
+        //public bool Success { get; set; }
+        //public string Message { get; set; }
         public string Password { get; set; }
     }
 }

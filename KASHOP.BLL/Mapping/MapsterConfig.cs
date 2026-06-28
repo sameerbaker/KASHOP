@@ -30,7 +30,8 @@ namespace KASHOP.BLL.Mapping
                     t => t.Language == CultureInfo.CurrentCulture.Name)
                     .Select(t => t.Name).FirstOrDefault()
                     )
-                .Map(dest=>dest.MainImage, source => $"https://localhost:7270/images/{source.MainImage}");
+                .Map(dest=>dest.MainImage, source => $"https://localhost:7270/images/{source.MainImage}")
+                .Map(dest => dest.SubImages, source => source.Images.Select(i => $"https://localhost:7270/images/{i.ImagePath}").ToList());
 
             TypeAdapterConfig< Product, ProductUpdateRequest>.NewConfig()
                 .IgnoreNullValues(true);
@@ -44,7 +45,16 @@ namespace KASHOP.BLL.Mapping
                 .Where(t => t.Language == CultureInfo.CurrentCulture.Name)
                 .Select(t => t.Name).FirstOrDefault()
                 ).Map(dest => dest.Price, source => source.Product.Price)
-                .Map(dest => dest.ProductImage, source => $"https://localhost:7270/images/{source.Product.MainImage}"); ;
+                .Map(dest => dest.ProductImage, source => $"https://localhost:7270/images/{source.Product.MainImage}"); 
+
+
+            TypeAdapterConfig<OrderItem, OrderItemResponse>.NewConfig()
+                .Map(dest => dest.ProductName, source => source.Product.Translations
+                .Where(t => t.Language == CultureInfo.CurrentCulture.Name)
+                .Select(t => t.Name).FirstOrDefault()
+                ).Map(dest => dest.UnitPrice, source => source.Product.Price)
+                .Map(dest => dest.TotalPrice, source => source.Quantity * source.Product.Price);
+
         }
     }
 }

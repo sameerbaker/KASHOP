@@ -9,6 +9,6 @@ namespace KASHOP.DAL.Repository
 {
     public interface IProductRepository : IGenericRepository<Product>
     {
-        Task<bool> DecreaseQuantityAsync(int productId, int amoung );
+        Task<List<Product>?> DecreaseQuantityAsync(List<OrderItem> orderItems);
     }
 }

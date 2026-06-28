@@ -1,4 +1,5 @@
 ﻿using KASHOP.DAL.DTO.Request;
+using KASHOP.DAL.DTO.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace KASHOP.DAL.Models
         Pending = 1,
         Approved = 2,
         Shipped = 3,
-        Delivered = 4,
-        Cancelled = 5,
-        Paid = 6,
+        Paid = 4,
+        Delivered = 5,
+        Cancelled = 6,
 
     }
     public class Order
@@ -34,5 +35,7 @@ namespace KASHOP.DAL.Models
         public string PhoneNumber { get; set; }
 
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
+        
     }
 }

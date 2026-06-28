@@ -59,6 +59,25 @@ namespace KASHOP.DAL.Repository
         
         }
 
+        public IQueryable<T> GetQueryable(Expression<Func<T, bool>> filter = null, string[]? includes = null)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            if (filter != null)
+                query = query.Where(filter);
+            if (includes != null)
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
+            }
+            return query;
+            //Include(c => c.Translations)
+            //return await _context.Set<T>().ToListAsync();
+
+
+        }
+
         public async Task<T?> GetOne(Expression<Func<T, bool>> filter, string[]? includes = null)
         {
             IQueryable<T> query = _context.Set<T>();
@@ -78,6 +97,12 @@ namespace KASHOP.DAL.Repository
             var affected = await _context.SaveChangesAsync();
 
                 return affected > 0;
+        }
+
+        public async Task<bool> UpdateRangeAsync(List<T> entities)
+        {
+            _context.UpdateRange(entities);
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

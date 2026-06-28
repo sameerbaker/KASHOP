@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using KASHOP.BLL.Service;
 using KASHOP.DAL.DTO.Request;
+using Microsoft.AspNetCore.Identity.Data;
 
 namespace KASHOP.UI.Controllers
 {
@@ -54,6 +55,15 @@ namespace KASHOP.UI.Controllers
             var result = await _authenticationService.ResetPasswordAsync(request);
             if (!result.Success)
                 return BadRequest(result);
+            return Ok(result);
+        }
+
+        [HttpPost("RefreshToken")]
+        public async Task<IActionResult> RefreshToken()
+        {
+            var result = await _authenticationService.RefreshTokenAsync();
+            if (!result.Success)
+                return Unauthorized(result);
             return Ok(result);
         }
     }

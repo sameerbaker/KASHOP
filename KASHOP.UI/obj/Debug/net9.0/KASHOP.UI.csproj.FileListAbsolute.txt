@@ -173,3 +173,6 @@ D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\obj\Debug\net9.0\KASHOP.UI.Mv
 D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\KASHOP.UI.staticwebassets.runtime.json
 D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\Newtonsoft.Json.dll
 D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\Stripe.net.dll
+D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\xunit.abstractions.dll
+D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\xunit.core.dll
+D:\BackEnd\API_TEST-PROCECT_FINEL\KASHOP\KASHOP.UI\bin\Debug\net9.0\xunit.execution.dotnet.dll

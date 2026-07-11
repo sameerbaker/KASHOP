@@ -49,15 +49,27 @@ namespace KASHOP.BLL.Service
             return result.Succeeded;
         }
 
-        public Task<bool> BlockUser(string userId)
+        public async Task<bool> ToggleBlockUser(string userId)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByIdAsync(userId);
+            
+            bool isBlocked = user.LockoutEnd > DateTimeOffset.UtcNow;
+            if (isBlocked)
+            {
+                await _userManager.SetLockoutEnabledAsync(user,false);
+            }
+            else
+            {
+                await _userManager.SetLockoutEnabledAsync(user,true);
+                await _userManager.SetLockoutEndDateAsync(user, DateTime.UtcNow.AddDays(5));
+            }
+            return true;
         }
 
-        public Task<bool> UnblockUser(string userId)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<bool> UnblockUser(string userId)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public Task<bool> SoftDeleteUser(string userId)
         {

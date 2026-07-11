@@ -72,6 +72,11 @@ namespace KASHOP.BLL.Service
                 return new LoginResponse() { Success = false, Message = "Email not confirmed" };
             }
 
+            if(await _userManager.IsLockedOutAsync(user))
+            {
+                return new LoginResponse() { Success = false, Message = "Email is blocked" };
+
+            }
 
             var result = await _userManager.CheckPasswordAsync(user, request.Password);
             if (!result)

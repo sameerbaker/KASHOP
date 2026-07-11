@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yjMjz3L8Wmg=",
+  "dgSpecHash": "64IZehd/M2c=",
   "success": true,
   "projectFilePath": "D:\\BackEnd\\API_TEST-PROCECT_FINEL\\KASHOP\\KASHOP.DAL\\KASHOP.DAL.csproj",
   "expectedPackageFiles": [
@@ -94,7 +94,10 @@
     "C:\\Users\\IAT123\\.nuget\\packages\\system.text.json\\9.0.13\\system.text.json.9.0.13.nupkg.sha512",
     "C:\\Users\\IAT123\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
     "C:\\Users\\IAT123\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\IAT123\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+    "C:\\Users\\IAT123\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\IAT123\\.nuget\\packages\\xunit.abstractions\\2.0.3\\xunit.abstractions.2.0.3.nupkg.sha512",
+    "C:\\Users\\IAT123\\.nuget\\packages\\xunit.extensibility.core\\2.9.3\\xunit.extensibility.core.2.9.3.nupkg.sha512",
+    "C:\\Users\\IAT123\\.nuget\\packages\\xunit.extensibility.execution\\2.9.3\\xunit.extensibility.execution.2.9.3.nupkg.sha512"
   ],
   "logs": []
 }

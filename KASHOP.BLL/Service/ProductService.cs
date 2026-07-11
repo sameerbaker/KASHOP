@@ -48,7 +48,7 @@ namespace KASHOP.BLL.Service
 
         
 
-        public async Task<PaginationResponse<ProductResponse>> GetAllProductAsync(PaginationRequest request)
+        public async Task<PaginationResponse<ProductResponse>> GetAllProductAsync(ProductFilterRequest request)
         {
             var query =  _productRepository.GetQueryable(
                 p => p.Status == EntityStatus.Active
@@ -59,6 +59,37 @@ namespace KASHOP.BLL.Service
                     "Images"
                 }
                 );
+
+            if(request.Search != null)
+            {
+                query = query.Where(p => p.Translations.Any(t => t.Name.Contains(request.Search)));
+            }
+
+            if(request.CategoryId.HasValue)
+            {
+                query = query.Where(p => p.CategoryId == request.CategoryId.Value);
+            }
+            if(request.MinPrice.HasValue)
+            {
+                query = query.Where(p => p.Price >= request.MinPrice.Value);
+            }
+            if(request.MaxPrice.HasValue)
+            {
+                query = query.Where(p => p.Price <= request.MaxPrice.Value);
+            }
+            if(request.Name.Length > 0)
+            {
+                query = query.Where(p => p.Translations.Any(t => t.Name.Contains(request.Name)));
+            }
+
+            if (request.MaxRate.HasValue)
+            {
+                query = query.Where(p => p.Rate <= request.MaxRate.Value);
+            }
+            if(request.MinRate.HasValue)
+            {
+                query = query.Where(p => p.Rate >= request.MinRate.Value);
+            }
 
             var paginated = await query.ToPaginationAsync(request.Page, request.Limit);
 

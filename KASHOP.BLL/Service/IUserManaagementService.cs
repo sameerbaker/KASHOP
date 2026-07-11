@@ -12,8 +12,8 @@ namespace KASHOP.BLL.Service
         Task<List<UserListResponse>> GetAllUsers();
         Task<UserDetailsResponse> GetUserDetails(string userId);
         Task<bool> ChangeRole(string userId, string role);
-        Task<bool> BlockUser(string userId);
-        Task<bool> UnblockUser(string userId);
+        Task<bool> ToggleBlockUser(string userId);
+        //Task<bool> UnblockUser(string userId);
         Task<bool> SoftDeleteUser(string userId);
     }
 }

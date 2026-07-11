@@ -14,7 +14,7 @@ namespace KASHOP.BLL.Service
     {
         Task CreateProduct(ProductRequest request);
         Task<bool> DeleteProduct(int id);
-        Task<PaginationResponse<ProductResponse>> GetAllProductAsync(PaginationRequest request);
+        Task<PaginationResponse<ProductResponse>> GetAllProductAsync(ProductFilterRequest request);
         Task<ProductResponse?> GetProduct(Expression<Func<Product,bool>> filter);
 
         Task<bool> UpdateProduct(int id, ProductUpdateRequest request);

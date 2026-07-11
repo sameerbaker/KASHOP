@@ -45,5 +45,16 @@ namespace KASHOP.UI.Controllers
             }
             return Ok(new { message = _localizer["RoleChangedSuccessfully"] });
         }
+
+        [HttpPatch("{userId}/toggle-block")]
+        public async Task<IActionResult> ToggleBlock(string userId)
+        {
+            var result = await _userManaagementService.ToggleBlockUser(userId);
+            if (!result)
+            {
+                return BadRequest(new { message = _localizer["User block"] });
+            }
+            return Ok(new { message = _localizer["User is blocked"] });
+        }
     }
 }
